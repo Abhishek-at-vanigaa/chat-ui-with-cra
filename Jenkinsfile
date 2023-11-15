@@ -8,8 +8,19 @@ pipeline {
     }
 
     stage('list dir') {
-      steps {
-        sh 'ls -la'
+      parallel {
+        stage('list dir') {
+          steps {
+            sh 'ls -la'
+          }
+        }
+
+        stage('npm package install') {
+          steps {
+            sh 'npm install '
+          }
+        }
+
       }
     }
 
