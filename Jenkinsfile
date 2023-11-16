@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent any
   stages {
     stage('code chekcout') {
       steps {
@@ -25,14 +25,14 @@ pipeline {
     }
 
     stage('login to docker hub') {
+      environment {
+        DOCKERHUB_USER = 'abishek.k@vanigaa.in'
+        DOCKERHUB_PASSWORD = 'w6dmSFNYLWBqh!HE'
+      }
       steps {
         sh 'docker login -u $DOCKERHUB_USER -p $DOCKERHUBB_PASSWORD'
       }
     }
 
-  }
-  environment {
-    DOCKERHUB_USER = 'abishek.k@vanigaa.in'
-    DOCKERHUB_PASSWORD = 'w6dmSFNYLWBqh!HE'
   }
 }
